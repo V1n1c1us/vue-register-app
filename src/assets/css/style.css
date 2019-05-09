@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+    background: #387E94;
+    background: linear-gradient(15deg,#13547a 0,#80d0c7 100%);
+}
+
+.navbar {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.nav-style {
+    color: #fff;
+}
+.nav-link {
+    color: #fff !important;
+}
+.nav-link:hover {
+    color: #387E94 !important;
+}
+.card {
+    background-color: rgba(0, 0, 0, .03) !important;
+    color: #fff;
+    border: none !important;
+}
+
+.card-header {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.card-header img {
+    width: 15%;
+}
+
+.form-control {
+    color: #fff !important;
+    background-color: transparent !important;
+}
+
+.form-control:focus {
+    /* color: #495057; */
+    background-color: transparent !important;
+    border-color: #f17252 !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgb(255, 115, 82) !important;
+}
+
+.btn-login {
+    background-color: transparent;
+    border-color: #ced4da !important;
+    color: #fff;
+}
+.btn-login:hover {
+    background-color: #f17252;
+    border-color: #f17252 !important;
+}
+
