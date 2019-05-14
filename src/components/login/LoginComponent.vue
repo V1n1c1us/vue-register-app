@@ -1,57 +1,39 @@
 <template>
   <div>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header text-center">
-            <img src="http://laravel-register-app.test/img/fox-head.png" alt="Fox">
+    <v-layout>
+    <v-flex xs12 sm4 offset-sm3>
+      <v-card>
+        <v-card-title primary-title>
+          <div>
+    <v-text-field
+      v-model="usuario.email"
+      label="Email"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="usuario.password"
+      type="password"
+      label="Password"
+      required
+    ></v-text-field>
+
+    <v-btn
+      color="success"
+      @click="login()"
+    >
+      Login
+    </v-btn>
           </div>
-          <div class="card-body">
-            <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail</label>
-              <div class="col-md-6">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  required="required"
-                  autocomplete="email"
-                  autofocus="autofocus"
-                  class="form-control"
-                  v-model="usuario.email"
-                >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-              <div class="col-md-6">
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  required="required"
-                  class="form-control"
-                  v-model="usuario.password"
-                >
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-6 offset-md-4">
-                <div class="form-check">
-                  <input type="checkbox" name="remember" id="remember" class="form-check-input">
-                  <label for="remember" class="form-check-label">Remember Me</label>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row mb-0">
-              <div class="col-md-8 offset-md-4">
-                <button @click="login()" class="btn btn-primary">Login</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
   </div>
 </template>
 <script>
@@ -68,7 +50,7 @@ export default {
   },
   methods: {
     login() {
-      const url_api = "http://laravel-register-app.test/api/login";
+      const url_api = "http://register.test/api/login";
       axios
         .post(url_api, {
           email: this.usuario.email,
@@ -106,20 +88,5 @@ export default {
 </script>
 
 <style>
-.card {
-  background-color: rgba(0, 0, 0, 0.03);
-  color: #fff;
-  border: none;
-}
-.card-header {
-  border: none;
-  background-color: transparent;
-}
-.card-header img {
-  width: 15%;
-}
-.form-control {
-  color: #fff;
-  background-color: transparent;
-}
+
 </style>
