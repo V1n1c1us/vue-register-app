@@ -1,37 +1,23 @@
 <template>
-  <v-app>
-    <TopToolbar/>
-      <v-content>
-        <v-container fluid fill-height>
-          <v-layout
-            justify-center
-            align-center
-          >
-            <v-flex text-xs-center>
-              <router-view></router-view>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-content>
-    </v-app>
+  <div id="app">
+    <Templaete/>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import TopToolbar from './components/TopToolbar'
+
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld,
-    TopToolbar
   },
-  data () {
+  data() {
     return {
       usuario: false
-    }
+    };
   },
-    created() {
-    let usuarioAuth = sessionStorage.getItem('usuario');
+  created() {
+    let usuarioAuth = sessionStorage.getItem("usuario");
     if (usuarioAuth) {
       this.usuario = JSON.parse(usuarioAuth);
     }
@@ -39,9 +25,23 @@ export default {
   methods: {
     logout() {
       sessionStorage.clear();
-      this.usuario = false
-      this.$router.push('/about')
+      this.usuario = false;
+      this.$router.push("/about");
     }
   }
-}
+};
 </script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#app {
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+</style>
+

@@ -1,10 +1,14 @@
 <template>
 <div>
-  asdas
+  asd
 </div>
 </template>
 <script>
+//import Template from "../../components/Template";
 export default {
+  components: {
+    //Template
+  },
   data() {
     return {
       usuario: false
