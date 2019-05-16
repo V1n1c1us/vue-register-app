@@ -1,13 +1,26 @@
 <template>
-<div>
-  asd
-</div>
+<el-container>
+  <el-aside width="200px">
+    <Aside/>
+  </el-aside>
+  <el-container>
+    <el-header>
+      <Header/>
+    </el-header>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
+    <el-footer>Footer</el-footer>
+  </el-container>
+</el-container>
 </template>
 <script>
-//import Template from "../../components/Template";
+import Aside from './Aside'
+import Header from './Header'
 export default {
   components: {
-    //Template
+    Aside,
+    Header
   },
   data() {
     return {

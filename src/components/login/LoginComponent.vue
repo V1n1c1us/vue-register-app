@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     login() {
-      const url_api = "http://laravel-register-app.test/api/login";
+      const url_api = "http://register.test/api/login";
       axios
         .post(url_api, {
           email: this.usuario.email,
