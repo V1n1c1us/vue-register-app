@@ -1,38 +1,88 @@
 <template>
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span>Card name</span>
-      <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <vue-element-loading
+          text="Bem-vindo"
+          spinner="line-wave"
+          color="#fff"
+          size="64"
+          :active="isActive"
+          :is-full-screen="true"
+          background-color="rgba(23,77,95, .9)"
+        />
+        <div class="card">
+          <div class="card-header text-center">
+            <img src="../../assets/fox-head.png" alt="" srcset="">
+          </div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail</label>
+
+              <div class="col-md-6">
+                <input
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  v-model="usuario.email"
+                  value="email"
+                  required
+                  autocomplete="email"
+                  autofocus
+                >
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+
+              <div class="col-md-6">
+                <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  v-model="usuario.password"
+                  required
+                  autocomplete="current-password"
+                >
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-login" @click="login()" active>Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="text item">
-      <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
-        <el-form-item label="Name">
-          <el-input name="email" v-model="usuario.email"></el-input>
-        </el-form-item>
-        <el-form-item label="Activity zone">
-          <el-input name="password" v-model="usuario.password"></el-input>
-        </el-form-item>
-        <el-button type="primary" @click="login()">Login</el-button>
-      </el-form>
-    </div>
-  </el-card>
+  </div>
 </template>
 <script>
 import axios from "axios";
+import VueElementLoading from "vue-element-loading";
+
 export default {
-  name: "login-component",
+  name: "logincomponent",
+  components: {
+    VueElementLoading
+  },
   data() {
     return {
       usuario: {
         email: "",
         password: ""
       },
-      fullscreenLoading: false
+      isActive: false
     };
   },
+
   methods: {
     login() {
-      const url_api = "http://register.test/api/login";
+      const url_api = "http://laravel-register-app.test/api/login";
       axios
         .post(url_api, {
           email: this.usuario.email,
@@ -41,18 +91,12 @@ export default {
         .then(response => {
           console.log(response);
           if (response.data.token) {
-            const loading = this.$loading({
-              lock: true,
-              text: "Loading",
-              spinner: "el-icon-loading",
-              background: "rgba(0, 0, 0, 0.7)"
-            });
+            this.isActive = true;
             setTimeout(() => {
-              loading.close();
               this.$router.push("/admin");
             }, 2000);
             sessionStorage.setItem("usuario", JSON.stringify(response.data));
-           
+
             console.log("Login com sucesso");
           } else if (response.data.status == false) {
             //login não existe
@@ -86,8 +130,24 @@ export default {
 </script>
 
 <style>
-.box-card {
-  width: 450px;
-  margin: auto;
+.card {
+    margin-top: 20%;
+    background-color: rgba(0, 0, 0, .03) !important;
+    color: #fff;
+    border: none !important;
+}
+.card-header {
+    border: none !important;
+    background-color: transparent !important;
+}
+.btn-login {
+    background-color: transparent !important;
+    border-color: #ced4da !important;
+    color: #fff !important;
+}
+.btn-login:hover {
+    background-color: #f17252 !important;
+    border-color: #f17252 !important;
+    color: #fff !important;
 }
 </style>

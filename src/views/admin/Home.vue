@@ -1,45 +1,43 @@
 <template>
-<el-container>
-  <el-aside width="200px">
-    <Aside/>
-  </el-aside>
-  <el-container>
-    <el-header>
-      <Header/>
-    </el-header>
-    <el-main>
-      <router-view></router-view>
-    </el-main>
-    <el-footer>Footer</el-footer>
-  </el-container>
-</el-container>
+  <div id="page-top">
+              
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <SideBar/>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <NavBar/>
+          <!--@include('layouts.dashboard.navbar')-->
+
+          <main class="py-4">
+            <!-- @yield('content') -->
+          </main>
+        </div>
+        <!-- End of Content Wrapper -->
+      </div>
+      <!-- End of Page Wrapper -->
+    </div>
+  </div>
 </template>
 <script>
-import Aside from './Aside'
-import Header from './Header'
+import SideBar from "./template/SideBar";
+import NavBar from "./template/NavBar";
+
+
 export default {
-  components: {
-    Aside,
-    Header
-  },
+  components: { SideBar, NavBar,  },
   data() {
     return {
-      usuario: false
-    }
-  },
-  created() {
-    let usuarioAuth = sessionStorage.getItem('usuario');
-    if (usuarioAuth) {
-      this.usuario = JSON.parse(usuarioAuth);
-    }
-  },
-  methods: {
-    logout() {
-      sessionStorage.clear();
-      this.usuario = false
-      this.$router.push('/about')
-    }
+        isActive: true
+    };
   }
-
 };
 </script>
+<style>
+</style>
+
